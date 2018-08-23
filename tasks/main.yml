@@ -1,0 +1,9 @@
+- name: create volumes
+  with_items: '{{ lvm_volumes }}'
+  lvol:
+    vg: '{{ item.group }}'
+    lv: '{{ item.name }}'
+    size: '{{ item.size }}'
+    state: '{{ item.state | default("present") }}'
+  tags:
+    - lvm

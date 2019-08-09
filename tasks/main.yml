@@ -1,9 +1,37 @@
-- name: create volumes
+- name: create volume group
+  with_items: '{{ lvm_volumes }}'
+  lvg:
+    vg: '{{ item.group }}'
+    pvs: "{{ item.disks | join(',') }}"
+    pesize: '4'
+  tags:
+    - lvm
+
+- name: create logical volume
   with_items: '{{ lvm_volumes }}'
   lvol:
     vg: '{{ item.group }}'
     lv: '{{ item.name }}'
     size: '{{ item.size }}'
-    state: '{{ item.state | default("present") }}'
+    state: "{{ item.state | default('present') }}"
+  tags:
+    - lvm
+
+- name: create filesystem
+  with_items: '{{ lvm_volumes }}'
+  filesystem:
+    fstype: "{{ item.fstype | default('ext4') }}"
+    dev: '/dev/mapper/{{ item.group }}-{{ item.name }}'
+    resizefs: '{{ item.resizefs | default(True) }}'
+  tags:
+    - lvm
+
+- name: mount volume
+  with_items: '{{ lvm_volumes }}'
+  mount:
+    path: '{{ item.mountpoint }}'
+    src: '/dev/mapper/{{ item.group }}-{{ item.name }}'
+    fstype: "{{ item.fstype | default('ext4') }}"
+    state: "{{ 'mounted' if item.state | default('present') == 'present' else 'absent' }}"
   tags:
     - lvm

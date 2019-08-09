@@ -1,1 +1,12 @@
+## Example
+# lvm_volumes:
+#   - name: lv_data
+#     group: vg_data
+#     disks:
+#       - /dev/sda
+#     fstype: xfs
+#     size: 100GB
+#     resizefs: True
+#     mountpoint: /mnt/data
+#     state: present
 lvm_volumes: []

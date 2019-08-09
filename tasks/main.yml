@@ -1,5 +1,7 @@
 - name: create volume group
   with_items: '{{ lvm_volumes }}'
+  loop_control:
+    label: "name: {{ item.group }}, disks: {{ item.disks | join(',') }}"
   lvg:
     vg: '{{ item.group }}'
     pvs: "{{ item.disks | join(',') }}"
@@ -9,6 +11,8 @@
 
 - name: create logical volume
   with_items: '{{ lvm_volumes }}'
+  loop_control:
+    label: "name: {{ item.group }}, size: {{ item.size }}"
   lvol:
     vg: '{{ item.group }}'
     lv: '{{ item.name }}'
@@ -19,6 +23,8 @@
 
 - name: create filesystem
   with_items: '{{ lvm_volumes }}'
+  loop_control:
+    label: "device: /dev/mapper/{{ item.group }}-{{ item.name }}, fstype: {{ item.fstype | default('ext4') }}"
   filesystem:
     fstype: "{{ item.fstype | default('ext4') }}"
     dev: '/dev/mapper/{{ item.group }}-{{ item.name }}'
@@ -28,10 +34,13 @@
 
 - name: mount volume
   with_items: '{{ lvm_volumes }}'
+  loop_control:
+    label: "mount: /dev/mapper/{{ item.group }}-{{ item.name }} {{ item.mountpoint }} {{ item.fstype | default('ext4') }} {{ item.mountopts | default(omit) | join(',') }}"
   mount:
     path: '{{ item.mountpoint }}'
     src: '/dev/mapper/{{ item.group }}-{{ item.name }}'
     fstype: "{{ item.fstype | default('ext4') }}"
+    opts: "{{ item.mountopts | default(omit) | join(',') }}"
     state: "{{ 'mounted' if item.state | default('present') == 'present' else 'absent' }}"
   tags:
     - lvm

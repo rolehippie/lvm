@@ -17,6 +17,7 @@
     vg: '{{ item.group }}'
     lv: '{{ item.name }}'
     size: '{{ item.size }}'
+    resizefs: '{{ item.resizefs | default(True) }}'
     state: "{{ item.state | default('present') }}"
   tags:
     - lvm
@@ -28,7 +29,6 @@
   filesystem:
     fstype: "{{ item.fstype | default('ext4') }}"
     dev: '/dev/mapper/{{ item.group }}-{{ item.name }}'
-    resizefs: '{{ item.resizefs | default(True) }}'
   tags:
     - lvm
 

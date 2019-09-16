@@ -9,6 +9,16 @@
   tags:
     - lvm
 
+# workaround: https://github.com/ansible/ansible/pull/52890
+- name: resize physical volume
+  with_items: '{{ lvm_volumes }}'
+  loop_control:
+    label: "disks: {{ item.disks | join(',') }}"
+  command: "pvresize {{ item.disks | join(' ') }}"
+  changed_when: False
+  tags:
+    - lvm
+
 - name: create logical volume
   with_items: '{{ lvm_volumes }}'
   loop_control:

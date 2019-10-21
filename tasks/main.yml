@@ -45,12 +45,12 @@
 - name: mount volume
   with_items: '{{ lvm_volumes }}'
   loop_control:
-    label: "mount: /dev/mapper/{{ item.group }}-{{ item.name }} {{ item.mountpoint }} {{ item.fstype | default('ext4') }} {{ item.mountopts | default(omit) | join(',') }}"
+    label: "mount: /dev/mapper/{{ item.group }}-{{ item.name }} {{ item.mountpoint }} {{ item.fstype | default('ext4') }}{% if item.mountopts is defined %} {{ item.mountopts | join(',') }}{% endif %}"
   mount:
     path: '{{ item.mountpoint }}'
     src: '/dev/mapper/{{ item.group }}-{{ item.name }}'
     fstype: "{{ item.fstype | default('ext4') }}"
-    opts: "{{ item.mountopts | default(omit) | join(',') }}"
+    opts: "{{ item.mountopts | default([]) | join(',') or omit }}"
     state: "{{ 'mounted' if item.state | default('present') == 'present' else 'absent' }}"
   tags:
     - lvm

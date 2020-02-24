@@ -1,56 +1,68 @@
-- name: create volume group
-  with_items: '{{ lvm_volumes }}'
+# Standards: 0.1
+---
+- name: Install required packages
+  loop:
+    - lvm2
+  package:
+    name: '{{ item }}'
+    state: present
+  tags:
+    - lvm
+
+- name: Create volume group
+  loop: '{{ lvm_volumes }}'
   loop_control:
-    label: "name: {{ item.group }}, disks: {{ item.disks | join(',') }}"
+    label: '{{ item.group }}: {{ item.disks | join(",") }}'
   lvg:
     vg: '{{ item.group }}'
-    pvs: "{{ item.disks | join(',') }}"
+    pvs: '{{ item.disks | join(",") }}'
     pesize: '4'
   tags:
     - lvm
 
-# workaround: https://github.com/ansible/ansible/pull/52890
-- name: resize physical volume
-  with_items: '{{ lvm_volumes }}'
+- name: Resize physical volume
+  loop: '{{ lvm_volumes }}'
   loop_control:
-    label: "disks: {{ item.disks | join(',') }}"
-  command: "pvresize {{ item.disks | join(' ') }}"
+    label: '{{ item.group }}: {{ item.disks | join(",") }}'
   changed_when: False
+  command: 'pvresize {{ item.disks | join(" ") }}'
   tags:
     - lvm
 
-- name: create logical volume
-  with_items: '{{ lvm_volumes }}'
+- name: Create logical volume
+  loop: '{{ lvm_volumes }}'
   loop_control:
-    label: "name: {{ item.group }}, size: {{ item.size }}"
+    label: '{{ item.group }}: {{ item.name }}'
   lvol:
     vg: '{{ item.group }}'
     lv: '{{ item.name }}'
     size: '{{ item.size }}'
     resizefs: '{{ item.resizefs | default(True) }}'
-    state: "{{ item.state | default('present') }}"
+    state: '{{ item.state | default("present") }}'
   tags:
     - lvm
 
-- name: create filesystem
-  with_items: '{{ lvm_volumes }}'
+- name: Create volume filesystem
+  loop: '{{ lvm_volumes }}'
   loop_control:
-    label: "device: /dev/mapper/{{ item.group }}-{{ item.name }}, fstype: {{ item.fstype | default('ext4') }}"
+    label: '{{ item.group }}: {{ item.name }}'
   filesystem:
-    fstype: "{{ item.fstype | default('ext4') }}"
+    fstype: '{{ item.fstype | default("ext4") }}'
     dev: '/dev/mapper/{{ item.group }}-{{ item.name }}'
   tags:
     - lvm
 
-- name: mount volume
-  with_items: '{{ lvm_volumes }}'
+- name: Mount volume filesystem
+  loop: '{{ lvm_volumes }}'
   loop_control:
-    label: "mount: /dev/mapper/{{ item.group }}-{{ item.name }} {{ item.mountpoint }} {{ item.fstype | default('ext4') }}{% if item.mountopts is defined %} {{ item.mountopts | join(',') }}{% endif %}"
+    label: '{{ item.group }}: {{ item.name }}'
   mount:
     path: '{{ item.mountpoint }}'
     src: '/dev/mapper/{{ item.group }}-{{ item.name }}'
-    fstype: "{{ item.fstype | default('ext4') }}"
-    opts: "{{ item.mountopts | default([]) | join(',') or omit }}"
-    state: "{{ 'mounted' if item.state | default('present') == 'present' else 'absent' }}"
+    fstype: '{{ item.fstype | default("ext4") }}'
+    opts: '{{ item.mountopts | default([]) | join(",") or omit }}'
+    state: '{{ "mounted" if item.state | default("present") == "present" else "absent" }}'
   tags:
     - lvm
+
+...

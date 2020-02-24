@@ -1,5 +1,8 @@
-## Example
-# lvm_volumes:
+# Standards: 0.1
+---
+# @var lvm_volumes:description: List of volumes to manage
+# @var lvm_volumes:example: >
+# lvm_volumes
 #   - name: lv_data
 #     group: vg_data
 #     disks:
@@ -12,4 +15,7 @@
 #       - ro
 #       - noauto
 #     state: present
+# @end
 lvm_volumes: []
+
+...

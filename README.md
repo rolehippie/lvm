@@ -1,8 +1,14 @@
 # lvm
 
-[![Build Status](https://cloud.drone.io/api/badges/rolehippie/lvm/status.svg)](https://cloud.drone.io/rolehippie/lvm)
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/lvm) [![Build Status](https://img.shields.io/drone/build/rolehippie/lvm/master?logo=drone)](https://cloud.drone.io/rolehippie/lvm) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/lvm)](https://github.com/rolehippie/lvm/blob/master/LICENSE) 
 
-Ansible role to configure lvm
+Ansible role to install and configure the logical volume manager. 
+
+## Sponsor 
+
+[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu) 
+
+Building and improving this Ansible role have been sponsored by my employer **Proact Deutschland GmbH**.
 
 ## Table of content
 
@@ -46,7 +52,7 @@ lvm_volumes
 
 ## Dependencies
 
-- None
+* None
 
 ## License
 

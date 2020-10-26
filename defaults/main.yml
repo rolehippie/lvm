@@ -1,4 +1,4 @@
-# Standards: 0.1
+# Standards: 1.2
 ---
 # @var lvm_volumes:description: List of volumes to manage
 # @var lvm_volumes:example: >

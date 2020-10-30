@@ -1,8 +1,8 @@
 # Standards: 1.2
 ---
-# @var lvm_volumes:description: List of volumes to manage
-# @var lvm_volumes:example: >
-# lvm_volumes
+# @var lvm_group_volumes:description: List of volumes to manage per group
+# @var lvm_group_volumes:example: >
+# lvm_group_volumes:
 #   - name: lv_data
 #     group: vg_data
 #     disks:
@@ -16,6 +16,24 @@
 #       - noauto
 #     state: present
 # @end
-lvm_volumes: []
+lvm_group_volumes: "{{ lvm_volumes | default([]) }}"
+
+# @var lvm_host_volumes:description: List of volumes to manage per host
+# @var lvm_host_volumes:example: >
+# lvm_host_volumes:
+#   - name: lv_data
+#     group: vg_data
+#     disks:
+#       - /dev/sda
+#     fstype: xfs
+#     size: 100g
+#     resizefs: True
+#     mountpoint: /mnt/data
+#     mountopts:
+#       - ro
+#       - noauto
+#     state: present
+# @end
+lvm_host_volumes: []
 
 ...

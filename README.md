@@ -13,7 +13,8 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 ## Table of content
 
 * [Default Variables](#default-variables)
-  * [lvm_volumes](#lvm_volumes)
+  * [lvm_group_volumes](#lvm_group_volumes)
+  * [lvm_host_volumes](#lvm_host_volumes)
 * [Dependencies](#dependencies)
 * [License](#license)
 * [Author](#author)
@@ -22,20 +23,48 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 
 ## Default Variables
 
-### lvm_volumes
+### lvm_group_volumes
 
-List of volumes to manage
+List of volumes to manage per group
 
 #### Default value
 
 ```YAML
-lvm_volumes: []
+lvm_group_volumes: '{{ lvm_volumes | default([]) }}'
 ```
 
 #### Example usage
 
 ```YAML
-lvm_volumes
+lvm_group_volumes:
+  - name: lv_data
+    group: vg_data
+    disks:
+      - /dev/sda
+    fstype: xfs
+    size: 100g
+    resizefs: True
+    mountpoint: /mnt/data
+    mountopts:
+      - ro
+      - noauto
+    state: present
+```
+
+### lvm_host_volumes
+
+List of volumes to manage per host
+
+#### Default value
+
+```YAML
+lvm_host_volumes: []
+```
+
+#### Example usage
+
+```YAML
+lvm_host_volumes:
   - name: lv_data
     group: vg_data
     disks:

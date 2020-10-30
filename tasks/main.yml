@@ -10,7 +10,7 @@
     - lvm
 
 - name: Create volume group
-  loop: "{{ lvm_volumes }}"
+  loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.disks | join(',') }}"
   lvg:
@@ -21,7 +21,7 @@
     - lvm
 
 - name: Resize physical volume
-  loop: "{{ lvm_volumes }}"
+  loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.disks | join(',') }}"
   changed_when: False
@@ -30,7 +30,7 @@
     - lvm
 
 - name: Create logical volume
-  loop: "{{ lvm_volumes }}"
+  loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.name }}"
   lvol:
@@ -43,7 +43,7 @@
     - lvm
 
 - name: Create volume filesystem
-  loop: "{{ lvm_volumes }}"
+  loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.name }}"
   filesystem:
@@ -53,7 +53,7 @@
     - lvm
 
 - name: Mount volume filesystem
-  loop: "{{ lvm_volumes }}"
+  loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.name }}"
   mount:

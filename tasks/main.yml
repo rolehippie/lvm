@@ -48,7 +48,7 @@
     label: "{{ item.group }}: {{ item.name }}"
   filesystem:
     fstype: "{{ item.fstype | default('ext4') }}"
-    dev: "/dev/mapper/{{ item.group }}-{{ item.name }}"
+    dev: "/dev/mapper/{{ item.group }}-{{ item.name | replace('-', '--') }}"
   tags:
     - lvm
 
@@ -58,7 +58,7 @@
     label: "{{ item.group }}: {{ item.name }}"
   mount:
     path: "{{ item.mountpoint }}"
-    src: "/dev/mapper/{{ item.group }}-{{ item.name }}"
+    src: "/dev/mapper/{{ item.group }}-{{ item.name | replace('-', '--') }}"
     fstype: "{{ item.fstype | default('ext4') }}"
     opts: "{{ item.mountopts | default([]) | join(',') or omit }}"
     state: "{{ 'mounted' if item.state | default('present') == 'present' else 'absent' }}"

@@ -1,4 +1,3 @@
-# Standards: 1.2
 ---
 # @var lvm_group_volumes:description: List of volumes to manage per group
 # @var lvm_group_volumes:example: >

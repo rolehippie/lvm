@@ -1,9 +1,8 @@
-# Standards: 1.2
 ---
 - name: Install required packages
   loop:
     - lvm2
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   tags:
@@ -13,7 +12,7 @@
   loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.disks | join(',') }}"
-  lvg:
+  community.general.lvg:
     vg: "{{ item.group }}"
     pvs: "{{ item.disks | join(',') }}"
     pesize: "4"
@@ -25,7 +24,7 @@
   loop_control:
     label: "{{ item.group }}: {{ item.disks | join(',') }}"
   changed_when: False
-  command: "pvresize {{ item.disks | join(' ') }}"
+  ansible.builtin.command: "pvresize {{ item.disks | join(' ') }}"
   tags:
     - lvm
 
@@ -33,7 +32,7 @@
   loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.name }}"
-  lvol:
+  community.general.lvol:
     vg: "{{ item.group }}"
     lv: "{{ item.name }}"
     size: "{{ item.size }}"
@@ -46,7 +45,7 @@
   loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.name }}"
-  filesystem:
+  community.general.filesystem:
     fstype: "{{ item.fstype | default('ext4') }}"
     dev: "/dev/mapper/{{ item.group }}-{{ item.name | replace('-', '--') }}"
   tags:
@@ -56,7 +55,7 @@
   loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.name }}"
-  mount:
+  ansible.posix.mount:
     path: "{{ item.mountpoint }}"
     src: "/dev/mapper/{{ item.group }}-{{ item.name | replace('-', '--') }}"
     fstype: "{{ item.fstype | default('ext4') }}"

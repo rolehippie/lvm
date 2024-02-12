@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0](https://github.com/rolehippie/lvm/compare/v1.0.1...v2.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([b122ecc](https://github.com/rolehippie/lvm/commit/b122eccf55869d3dd2fb39f9a1460cac9f5dd609))
+* used full qualified collection names ([1746998](https://github.com/rolehippie/lvm/commit/1746998f3b241f083f7f847abf15c4e564cb1922))
+
+
+### Bugfixes
+
+* remove meta requirements and document used collections ([40a8627](https://github.com/rolehippie/lvm/commit/40a8627a46854a8c34f673b024d44a79d85aab75))
+
 ## [1.0.1](https://github.com/rolehippie/lvm/compare/v1.0.0...v1.0.1) (2023-07-03)
 
 

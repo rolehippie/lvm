@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/rolehippie/lvm/compare/v2.0.0...v2.1.0) (2025-09-21)
+
+
+### Features
+
+* apply new repo structure and update linting ([6f7d6e1](https://github.com/rolehippie/lvm/commit/6f7d6e178fcaac60282f2aa71d7cedc6e455c915))
+
 ## [2.0.0](https://github.com/rolehippie/lvm/compare/v1.0.1...v2.0.0) (2024-02-12)
 
 

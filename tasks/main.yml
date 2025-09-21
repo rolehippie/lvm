@@ -23,7 +23,7 @@
   loop: "{{ lvm_group_volumes + lvm_host_volumes }}"
   loop_control:
     label: "{{ item.group }}: {{ item.disks | join(',') }}"
-  changed_when: False
+  changed_when: false
   ansible.builtin.command: "pvresize {{ item.disks | join(' ') }}"
   tags:
     - lvm
@@ -36,8 +36,8 @@
     vg: "{{ item.group }}"
     lv: "{{ item.name }}"
     size: "{{ item.size }}"
-    resizefs: "{{ item.resizefs | default(True) }}"
-    state: "{{ item.state | default('present') }}"
+    resizefs: "{{ true if item.resizefs is undefined else item.resizefs }}"
+    state: "{{ 'present' if item.state is undefined else item.state }}"
   tags:
     - lvm
 
@@ -46,7 +46,7 @@
   loop_control:
     label: "{{ item.group }}: {{ item.name }}"
   community.general.filesystem:
-    fstype: "{{ item.fstype | default('ext4') }}"
+    fstype: "{{ 'ext4' if item.fstype is undefined else item.fstype }}"
     dev: "/dev/mapper/{{ item.group }}-{{ item.name | replace('-', '--') }}"
   tags:
     - lvm
@@ -58,9 +58,9 @@
   ansible.posix.mount:
     path: "{{ item.mountpoint }}"
     src: "/dev/mapper/{{ item.group }}-{{ item.name | replace('-', '--') }}"
-    fstype: "{{ item.fstype | default('ext4') }}"
-    opts: "{{ item.mountopts | default([]) | join(',') or omit }}"
-    state: "{{ 'mounted' if item.state | default('present') == 'present' else 'absent' }}"
+    fstype: "{{ 'ext4' if item.fstype is undefined else item.fstype }}"
+    opts: "{{ ([] if item.mountopts is undefined else item.mountopts) | join(',') or omit }}"
+    state: "{{ 'mounted' if item.state is undefined else ('mounted' if item.state == 'present' else 'absent') }}"
   tags:
     - lvm
 

@@ -1,4 +1,5 @@
 ---
-role_name: lvm
+role:
+  name: lvm
 
 ...

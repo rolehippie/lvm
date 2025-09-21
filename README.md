@@ -1,4 +1,4 @@
-# workspace
+# lvm
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/lvm)
 [![General Workflow](https://github.com/rolehippie/lvm/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/lvm/actions/workflows/general.yml)
@@ -52,7 +52,7 @@ lvm_group_volumes:
       - /dev/sda
     fstype: xfs
     size: 100g
-    resizefs: True
+    resizefs: true
     mountpoint: /mnt/data
     mountopts:
       - ro
@@ -80,7 +80,7 @@ lvm_host_volumes:
       - /dev/sda
     fstype: xfs
     size: 100g
-    resizefs: True
+    resizefs: true
     mountpoint: /mnt/data
     mountopts:
       - ro

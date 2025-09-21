@@ -30,10 +30,15 @@ galaxy_info:
       versions:
         - focal
         - jammy
+        - noble
   galaxy_tags:
     - lvm
     - volume
 
 dependencies: []
+
+collections:
+  - community.general
+  - ansible.posix
 
 ...

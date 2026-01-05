@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/rolehippie/lvm/compare/v3.1.0...v3.2.0) (2026-01-05)
+
+
+### Features
+
+* **minor:** update dependency community.general to >=12.2.0,<12.3.0 ([#47](https://github.com/rolehippie/lvm/issues/47)) ([4c63ab5](https://github.com/rolehippie/lvm/commit/4c63ab5ba1ccc24a2399f6e0971522531a94b9a1))
+
 ## [3.1.0](https://github.com/rolehippie/lvm/compare/v3.0.0...v3.1.0) (2025-12-08)
 
 

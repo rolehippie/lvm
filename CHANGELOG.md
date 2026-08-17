@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.5.0](https://github.com/rolehippie/lvm/compare/v4.4.0...v4.5.0) (2026-08-17)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.3.0,<13.4.0 ([#69](https://github.com/rolehippie/lvm/issues/69)) ([e513fd8](https://github.com/rolehippie/lvm/commit/e513fd89358bc110a29d594a55358608f4eb40c9))
+* **minor:** update dependency pipx:ansible-lint to v26.8.0 ([#70](https://github.com/rolehippie/lvm/issues/70)) ([1156e52](https://github.com/rolehippie/lvm/commit/1156e52a79abcd8ee78da9a1d1114c0d2681bed1))
+* **minor:** update dependency pipx:molecule to v26.8.0 ([#71](https://github.com/rolehippie/lvm/issues/71)) ([5f090f5](https://github.com/rolehippie/lvm/commit/5f090f5a990a20482228c9fde31c04657f59e895))
+* **patch:** update dependency pipx:ansible-core to v2.21.3 ([#67](https://github.com/rolehippie/lvm/issues/67)) ([5c95639](https://github.com/rolehippie/lvm/commit/5c95639eebe40e2dcf79407c2b0a61cc28872cec))
+* **patch:** update dependency pre-commit to v4.6.2 ([#68](https://github.com/rolehippie/lvm/issues/68)) ([91db752](https://github.com/rolehippie/lvm/commit/91db75246f5a95df72b5bd506a367a2f23d23082))
+
 ## [4.4.0](https://github.com/rolehippie/lvm/compare/v4.3.0...v4.4.0) (2026-08-10)
 
 ### Dependencies

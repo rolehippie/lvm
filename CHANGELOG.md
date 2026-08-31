@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.5.1](https://github.com/rolehippie/lvm/compare/v4.5.0...v4.5.1) (2026-08-31)
+
+### Dependencies
+
+* **patch:** update dependency pipx:ansible-doctor to v8.4.1 ([#72](https://github.com/rolehippie/lvm/issues/72)) ([e00b92b](https://github.com/rolehippie/lvm/commit/e00b92b1f941ad98f7befbc244359a8841b610c3))
+
 ## [4.5.0](https://github.com/rolehippie/lvm/compare/v4.4.0...v4.5.0) (2026-08-17)
 
 ### Dependencies

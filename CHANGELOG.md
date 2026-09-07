@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.6.0](https://github.com/rolehippie/lvm/compare/v4.5.1...v4.6.0) (2026-09-07)
+
+### Features
+
+* add separate requirements for molecule run ([fab35b7](https://github.com/rolehippie/lvm/commit/fab35b72934940f9b525743d43541842c807395f))
+
 ## [4.5.1](https://github.com/rolehippie/lvm/compare/v4.5.0...v4.5.1) (2026-08-31)
 
 ### Dependencies

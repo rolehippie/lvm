@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.7.0](https://github.com/rolehippie/lvm/compare/v4.6.0...v4.7.0) (2026-09-14)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.4.0,<13.5.0 ([#73](https://github.com/rolehippie/lvm/issues/73)) ([051e5d0](https://github.com/rolehippie/lvm/commit/051e5d03d42d18adbf7d6c1fc9cae74f00ca44f4))
+* **mise:** update dependency pipx:ansible-core to v2.21.4 ([#74](https://github.com/rolehippie/lvm/issues/74)) ([556e708](https://github.com/rolehippie/lvm/commit/556e7089633581657d0d6dc0bf8c1087ce5e67e5))
+* **mise:** update dependency prek to v0.5.3 ([#75](https://github.com/rolehippie/lvm/issues/75)) ([f4e652f](https://github.com/rolehippie/lvm/commit/f4e652fff9f8262b26e831e41341a36d2af42c02))
+
 ## [4.6.0](https://github.com/rolehippie/lvm/compare/v4.5.1...v4.6.0) (2026-09-07)
 
 ### Features

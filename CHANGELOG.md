@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.8.0](https://github.com/rolehippie/lvm/compare/v4.7.0...v4.8.0) (2026-10-12)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.5.0,<13.6.0 ([#84](https://github.com/rolehippie/lvm/issues/84)) ([908fd7c](https://github.com/rolehippie/lvm/commit/908fd7c47ff13f47179e84d2d36bcde08a4b0a36))
+* **mise:** update dependency pipx:ansible-core to v2.21.5 ([#82](https://github.com/rolehippie/lvm/issues/82)) ([015afbd](https://github.com/rolehippie/lvm/commit/015afbd643d950c9b9a916cd7f78bf0018d6d955))
+* **mise:** update dependency pipx:ansible-doctor to v8.4.2 ([#76](https://github.com/rolehippie/lvm/issues/76)) ([29ab099](https://github.com/rolehippie/lvm/commit/29ab09981a4e7efa6bcc7bc53853d7f9a81b2f28))
+* **mise:** update dependency pipx:ansible-doctor to v8.4.3 ([#83](https://github.com/rolehippie/lvm/issues/83)) ([dd16db9](https://github.com/rolehippie/lvm/commit/dd16db94a61c2db849bc0e8905dc2432a2b37dda))
+* **mise:** update dependency pipx:ansible-lint to v26.9.0 ([#77](https://github.com/rolehippie/lvm/issues/77)) ([ad5332e](https://github.com/rolehippie/lvm/commit/ad5332ed0420e2f3509dffe532bea6bc1a081c32))
+* **mise:** update dependency pipx:molecule to v26.10.0 ([#86](https://github.com/rolehippie/lvm/issues/86)) ([ba4e11e](https://github.com/rolehippie/lvm/commit/ba4e11e4fab0a64e88350d30955da36d994286ad))
+* **mise:** update dependency pipx:molecule to v26.9.0 ([#78](https://github.com/rolehippie/lvm/issues/78)) ([d15628f](https://github.com/rolehippie/lvm/commit/d15628f63aa406ec5eeac64dbbf594e2fe04fa39))
+* **mise:** update dependency prek to v0.5.4 ([#79](https://github.com/rolehippie/lvm/issues/79)) ([e6ac1c8](https://github.com/rolehippie/lvm/commit/e6ac1c8457ac85c32ea70ea09cf545a3aa0e4ba7))
+* **mise:** update dependency prek to v0.5.5 ([#81](https://github.com/rolehippie/lvm/issues/81)) ([bbcb354](https://github.com/rolehippie/lvm/commit/bbcb3547994adbbdfe13742e2b35c3cc88bfd9b4))
+
 ## [4.7.0](https://github.com/rolehippie/lvm/compare/v4.6.0...v4.7.0) (2026-09-14)
 
 ### Dependencies
